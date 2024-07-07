@@ -1,0 +1,34 @@
+<!-- name, inviterName, invitaionLink, inviterEmail -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INVITAION</title>
+  </head>
+  <body>
+    <h2>You've been invited to join a Kanban board!</h2>
+
+    <p>Hi <%= name %>,</p>
+
+    <p>
+      <%= inviterName %> has invited you to join their Kanban board on TASKIFY.
+      This board is a great way to collaborate on tasks and keep track of
+      progress.
+    </p>
+
+    <p>To accept this invitation and join the board, click the link below:</p>
+
+    <p><a href="<%= invitationLink %>">Accept Invitation</a></p>
+
+    <p>
+      This link will automatically add you to the board and grant you the
+      appropriate permissions. If you have any questions, feel free to contact
+      <%= inviterName %> at <%= inviterEmail %>.
+    </p>
+
+    <p>Thanks,</p>
+
+    <p>The TASKIFY Team</p>
+  </body>
+</html>
