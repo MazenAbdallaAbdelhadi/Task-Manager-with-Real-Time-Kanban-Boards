@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -17,37 +17,46 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { addColumnToBoardSchema } from "../../validation/addColumnToBoardSchema";
-import { useAddColumnService } from "../../services/addColumnService";
+import { updateColumnSchema } from "../../validation/updateColumnSchema";
+import { useUpdateColumnService } from "../../services/updateColumnService";
 
-const AddColumnForm = () => {
-  const form = useForm<z.infer<typeof addColumnToBoardSchema>>({
-    resolver: zodResolver(addColumnToBoardSchema),
+interface Props {
+  name: string;
+  columnId: string;
+}
+
+const EditColumnForm: React.FC<Props> = ({ name, columnId }) => {
+
+  const form = useForm<z.infer<typeof updateColumnSchema>>({
+    resolver: zodResolver(updateColumnSchema),
     defaultValues: {
-      name: "",
+      newName: name,
+      columnId,
     },
     mode: "onChange",
   });
-  const dispatch = useAppDispatch();
 
-  const { mutate, isPending, isSuccess } = useAddColumnService();
+  const { mutate, isPending, isSuccess } = useUpdateColumnService();
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Column added successfully");
+      toast.success("Column updated successfully");
       dispatch(closeModal());
     }
   }, [isSuccess]);
 
-  function onSubmit(values: z.infer<typeof addColumnToBoardSchema>) {
+  function onSubmit(values: z.infer<typeof updateColumnSchema>) {
     mutate(values);
   }
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
-          name="name"
+          name="newName"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Title</FormLabel>
@@ -63,7 +72,7 @@ const AddColumnForm = () => {
           {isPending ? (
             <Loader size={18} className="animate-spin" />
           ) : (
-            "add Column"
+            "Update Column"
           )}
         </Button>
       </form>
@@ -71,4 +80,4 @@ const AddColumnForm = () => {
   );
 };
 
-export default AddColumnForm;
+export default EditColumnForm;

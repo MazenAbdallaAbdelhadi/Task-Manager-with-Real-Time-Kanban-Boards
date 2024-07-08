@@ -32,7 +32,7 @@ const Board: React.FC = () => {
       </div>
     );
 
-    if(!selectedBoard) return null;
+  if(!selectedBoard) return null;
 
   return (
     <div className="p-4 h-full flex gap-4">

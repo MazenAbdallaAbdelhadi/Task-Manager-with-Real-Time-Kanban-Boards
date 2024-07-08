@@ -31,12 +31,16 @@ export const deleteBoardById = async (id: string) =>
 export const addColumnToBoard = async (
   id: string,
   data: z.infer<typeof addColumnToBoardSchema>
-) => (await api.post<ResponseObject<Column>>(`/v1/boards/${id}`, data)).data;
+) =>
+  (await api.post<ResponseObject<Column>>(`/v1/boards/${id}/addColumn`, data))
+    .data;
 
 export const updateColumn = async (
   id: string,
   data: z.infer<typeof updateColumnSchema>
-) => (await api.put<ResponseObject<Column>>(`/v1/boards/${id}`, data)).data;
+) =>
+  (await api.put<ResponseObject<Column>>(`/v1/boards/${id}/updateColumn`, data))
+    .data;
 
 export const swapColumns = async (
   id: string,
@@ -53,5 +57,9 @@ export const removeColumn = async (
   id: string,
   data: z.infer<typeof deleteColumnSchema>
 ) =>
-  (await api.delete<ResponseObject<Column[]>>(`/v1/boards/${id}`, { data }))
-    .data;
+  (
+    await api.delete<ResponseObject<Column[]>>(
+      `/v1/boards/${id}/removeColumn`,
+      { data }
+    )
+  ).data;

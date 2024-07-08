@@ -14,10 +14,6 @@ const boardSchema = new mongoose.Schema(
     },
     columns: [
       {
-        _id: {
-          type: mongoose.Types.ObjectId,
-          default: new mongoose.Types.ObjectId(),
-        },
         name: {
           type: String,
           required: true,

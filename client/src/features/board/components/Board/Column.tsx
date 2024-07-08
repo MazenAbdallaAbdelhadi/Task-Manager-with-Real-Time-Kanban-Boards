@@ -1,8 +1,10 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-
 import { Grip } from "lucide-react";
+
 import { Column as IColumn } from "@/types/board";
+import EditColumnButton from "./EditColumnButton";
+import DeleteColumnButton from "./DeleteColumnButton";
 
 interface Props {
   column: IColumn;
@@ -47,13 +49,17 @@ const Column: React.FC<Props> = ({ column }) => {
           {column.name}
         </span>
 
-        <span
-          {...attributes}
-          {...listeners}
-          className="text-muted-foreground rounded-md p-2 block hover:bg-neutral-800 hover:text-secondary-foreground"
-        >
-          <Grip size={18} />
-        </span>
+        <div className="flex items-center">
+          <EditColumnButton columnId={column._id} name={column.name} />
+          <DeleteColumnButton columnId={column._id} />
+          <span
+            {...attributes}
+            {...listeners}
+            className="text-muted-foreground rounded-md p-2 block hover:bg-neutral-800 hover:text-secondary-foreground"
+          >
+            <Grip size={18} />
+          </span>
+        </div>
       </div>
     </div>
   );
