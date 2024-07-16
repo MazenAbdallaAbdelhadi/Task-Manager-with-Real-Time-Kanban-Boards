@@ -18,10 +18,10 @@ const app = express();
 // LOGGER
 app.use(logger("dev"));
 if (process.env.NODE_ENV !== "production") {
-  createFolderIfNotExists(path.join(__dirname, "logs"));
+  createFolderIfNotExists(path.join(__dirname, "..", "logs"));
 
   const accessLogStream = fs.createWriteStream(
-    path.join(__dirname, "logs/access.log"),
+    path.join(__dirname, "..", "logs/access.log"),
     { flags: "a" }
   );
   app.use(logger("combined", { stream: accessLogStream }));

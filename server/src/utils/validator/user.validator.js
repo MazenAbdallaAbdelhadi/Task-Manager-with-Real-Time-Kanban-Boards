@@ -1,4 +1,5 @@
 const { body, param, checkExact } = require("express-validator");
+const bcrypt = require("bcrypt");
 const roles = require("../../config/roles");
 const User = require("../../models/user.model");
 const validatorMiddleware = require("../../middleware/validatorMiddleware");
@@ -80,7 +81,8 @@ exports.updateLoggedUserPasswordValidator = [
     .withMessage("old password is required")
     .custom(async (val, { req }) => {
       const user = req.user;
-      const isValid = await user.comparePassword(val);
+
+      const isValid = await bcrypt.compare(val, user.password);
 
       if (!isValid) {
         return Promise.reject("old password is wrong");

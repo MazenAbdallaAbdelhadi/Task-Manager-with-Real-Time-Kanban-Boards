@@ -5,12 +5,13 @@ import { Grip } from "lucide-react";
 import { Column as IColumn } from "@/types/board";
 import EditColumnButton from "./EditColumnButton";
 import DeleteColumnButton from "./DeleteColumnButton";
+import { PropsWithChildren } from "react";
 
-interface Props {
+interface Props extends PropsWithChildren {
   column: IColumn;
 }
 
-const Column: React.FC<Props> = ({ column }) => {
+const Column: React.FC<Props> = ({ column, children }) => {
   const {
     setNodeRef,
     attributes,
@@ -61,6 +62,9 @@ const Column: React.FC<Props> = ({ column }) => {
           </span>
         </div>
       </div>
+
+      {/* tasks goes here */}
+      {children}
     </div>
   );
 };

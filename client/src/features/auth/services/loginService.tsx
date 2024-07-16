@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { login } from "../authApi";
-import useLocalStorage from "../hooks/useLocalStorage";
+import { useLocalStorage } from "usehooks-ts";
 import { useAppDispatch } from "@/store/store";
+import { login } from "../authApi";
 import { setUser } from "../authSlice";
 
 export const useLoginService = () => {

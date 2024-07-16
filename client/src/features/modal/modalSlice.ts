@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "@/store/rootReducer";
 import { BoardModal, ColumnModal } from "@/features/board";
+import { ProfileModal } from "../profile";
 
 // Define Modal Types Using an Enum
 export enum ModalType {
@@ -8,7 +9,6 @@ export enum ModalType {
   COLUMN_MODAL = "COLUMN_MODAL",
   TASK_MODAL = "TASK_MODAL",
   PROFILE_MODAL = "PROFILE_MODAL",
-  LOGOUT_MODAL = "LOGOUT_MODAL",
 }
 
 export type ModalMode = "CREATE" | "UPDATE" | "DELETE";
@@ -18,8 +18,7 @@ const modalComponents = {
   [ModalType.BOARD_MODAL]: BoardModal,
   [ModalType.COLUMN_MODAL]: ColumnModal,
   [ModalType.TASK_MODAL]: null,
-  [ModalType.PROFILE_MODAL]: null,
-  [ModalType.LOGOUT_MODAL]: null,
+  [ModalType.PROFILE_MODAL]: ProfileModal,
 };
 
 interface ModalState {

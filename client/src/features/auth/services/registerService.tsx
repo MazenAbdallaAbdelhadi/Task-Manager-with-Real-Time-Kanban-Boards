@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useLocalStorage } from "usehooks-ts";
 import { register } from "../authApi";
-import useLocalStorage from "../hooks/useLocalStorage";
 
 export const useRegisterService = () => {
   const queryClient = useQueryClient();

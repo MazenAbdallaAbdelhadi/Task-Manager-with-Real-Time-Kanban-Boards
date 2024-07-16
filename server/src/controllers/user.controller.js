@@ -17,6 +17,8 @@ exports.uploadProfileImage = uploadSingle("profileImage");
 
 exports.resizeProfileImage = async (req, res, next) => {
   if (req.file) {
+    console.log(req.file);
+
     const filename = `user-${uuidV4()}-${Date.now()}.jpeg`;
 
     createFolderIfNotExists(

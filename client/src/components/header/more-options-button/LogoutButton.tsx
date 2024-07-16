@@ -8,7 +8,11 @@ const LogoutButton = () => {
 
   return (
     <DropdownMenuItem
-      onClick={() => dispatch(openModal({ type: ModalType.PROFILE_MODAL, mode: "DELETE" }))}
+      onClick={() =>
+        dispatch(
+          openModal({ type: ModalType.PROFILE_MODAL, props: { logout: true } })
+        )
+      }
     >
       <LogOut size={18} className="mr-2" />
       Logout

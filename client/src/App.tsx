@@ -29,6 +29,7 @@ function App() {
           </Route>
         </Route>
       </Routes>
+      
       <ModalManager />
       <Toaster />
     </ThemeProvider>
